@@ -11,7 +11,7 @@ const app = express();
 
 // Middlewares globales
 app.use(cors({
-  origin: true,
+  origin: 'https://onrender.com',
   credentials: true,
 }));
 app.use(express.json());
