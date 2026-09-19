@@ -1,0 +1,100 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Build outputs
+frontend/dist/
+frontend/build/
+backend/dist/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+bash.exe.stackdump
+nul
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+replace_file.bat
+
+# Database
+*.sqlite
+*.sqlite3
+*.db
+
+# Uploads
+backend/uploads/
+backend/public/
+frontend/public-static/
+
+# Sessions
+backend/sessions/
+
+# PM2
+.pm2/
+
+# Documentation de desarrollo
+CAMBIOS_*.md
+CORRECCIONES_*.md
+DOCUMENTACION_*.md
+EJEMPLOS_*.md
+GUIA_*.md
+PROSPECTO_*.md
+SOLUCION_*.md
+README_MEJORADO.md
+README_V4.md
+
+# Backups
+* copy.*
+*.bak
+*.backup
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Cache
+.cache/
+.parcel-cache/
+.vite/
+.eslintcache
+
+# Load Testing
+backend/load-tests/
+report.json
+report.json.html
+*.json.html
+
+# Misc
+*.pem
+.key
