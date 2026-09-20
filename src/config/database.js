@@ -3,7 +3,7 @@ require('dotenv').config();
 
 let sequelize;
 
-// Si existe DATABASE_URL (entorno de producción como Render), se conecta usando la URL completa
+// 1. Si estás en Render (donde configuraste DATABASE_URL), usará la URL completa
 if (process.env.DATABASE_URL) {
   sequelize = new Sequelize(process.env.DATABASE_URL, {
     dialect: 'postgres',
@@ -11,12 +11,12 @@ if (process.env.DATABASE_URL) {
     dialectOptions: {
       ssl: {
         require: true,
-        rejectUnauthorized: false // Requerido por Render para conexiones SSL seguras
+        rejectUnauthorized: false // Obligatorio para que Render no rechace la conexión segura
       }
     }
   });
 } else {
-  // Si no existe (entorno local / desarrollo), usa tus variables individuales
+  // 2. Si estás en tu computadora (Localhost), usará tus variables individuales del archivo .env
   sequelize = new Sequelize(
     process.env.DB_NAME,
     process.env.DB_USER,
@@ -24,7 +24,7 @@ if (process.env.DATABASE_URL) {
     {
       host: process.env.DB_HOST || 'localhost',
       port: parseInt(process.env.DB_PORT || '5432'),
-      dialect: 'postgres',
+      dialect: process.env.DB_DIALECT || 'postgres',
       logging: false,
     }
   );
