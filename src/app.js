@@ -11,8 +11,14 @@ const app = express();
 
 // Middlewares globales
 app.use(cors({
-  origin: 'https://onrender.com',
+  origin: [
+    'https://ala-cena-client.onrender.com', // <-- Pon aquí la URL exacta de tu frontend en Render (sin el '/' al final)
+    'http://localhost:5173',               // Para que te siga funcionando en local con Vite
+    'http://localhost:3000'                // Por si acaso usas React clásico en local
+  ],
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
