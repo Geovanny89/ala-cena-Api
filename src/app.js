@@ -13,14 +13,15 @@ const app = express();
 // Actualiza tu middleware de CORS en el backend:
 app.use(cors({
   origin: [
-    'https://onrender.com', // Sin la barra '/' al final
+    'https://ala-cena-client.onrender.com',
     'http://localhost:5173',
     'http://localhost:3000'
   ],
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'], // <-- ¡Asegúrate de agregar 'PATCH' aquí!
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
