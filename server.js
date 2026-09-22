@@ -34,7 +34,7 @@ const seedAdmin = async () => {
 const startServer = async () => {
   try {
     // Sincronizar la base de datos (alter:true agrega columnas nuevas sin borrar datos)
-    await sequelize.sync({ alter: true });
+    await sequelize.sync({ force: true });
     console.log('✅ Base de datos sincronizada');
 
     // Crear admin por defecto
