@@ -39,6 +39,12 @@ const create = async (req, res) => {
     // Comprobante opcional al crear
     const receiptUrl = req.file ? `/uploads/receipts/${req.file.filename}` : null;
 
+    const now = new Date();
+    if (now.getHours() === 9) {
+      await t.rollback();
+      return res.status(400).json({ message: 'El sistema de pedidos está cerrado de 9:00 AM a 10:00 AM.' });
+    }
+
     if (!comboId || !customerName || !studentId || !whatsapp || !sodaSize || !sodaFlavorId) {
       await t.rollback();
       return res.status(400).json({ message: 'Todos los campos son requeridos (incluyendo sabor de gaseosa)' });

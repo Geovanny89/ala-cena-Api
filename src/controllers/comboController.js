@@ -11,7 +11,6 @@ const getAll = async (req, res) => {
     const where = {};
     if (!all || all !== 'true') {
       where.isActive = true;
-      where.availableUntil = { [Op.gte]: new Date() };
     }
 
     const combos = await Combo.findAll({

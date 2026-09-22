@@ -20,6 +20,10 @@ const PizzaFlavor = sequelize.define('PizzaFlavor', {
     type: DataTypes.BOOLEAN,
     defaultValue: true,
   },
+  imageUrl: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
 });
 
 module.exports = PizzaFlavor;

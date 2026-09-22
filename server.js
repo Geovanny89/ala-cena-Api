@@ -33,12 +33,31 @@ const seedAdmin = async () => {
 
 const startServer = async () => {
   try {
-    // Sincronizar la base de datos (crear tablas si no existen)
-    await sequelize.sync({ force: false });
+    // Sincronizar la base de datos (alter:true agrega columnas nuevas sin borrar datos)
+    await sequelize.sync({ alter: true });
     console.log('✅ Base de datos sincronizada');
 
     // Crear admin por defecto
     await seedAdmin();
+
+    // Configurar reseteo diario de inventario a las 10:00 AM
+    let lastResetDate = null;
+    setInterval(async () => {
+      const now = new Date();
+      const currentDate = now.toDateString();
+      if (now.getHours() === 10 && lastResetDate !== currentDate) {
+        try {
+          await Combo.update(
+            { remainingQuantity: sequelize.col('totalQuantity') },
+            { where: { isActive: true } }
+          );
+          lastResetDate = currentDate;
+          console.log('✅ Combos reseteados correctamente a las 10:00 AM');
+        } catch (err) {
+          console.error('❌ Error al resetear los combos:', err);
+        }
+      }
+    }, 60000);
 
     app.listen(port, () => {
       console.log(`🚀 Servidor corriendo en http://localhost:${port}`);

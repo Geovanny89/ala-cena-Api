@@ -25,7 +25,7 @@ const Combo = sequelize.define('Combo', {
       const now = new Date();
       const tomorrow = new Date(now);
       tomorrow.setDate(now.getDate() + 1);
-      tomorrow.setHours(9, 30, 0, 0);
+      tomorrow.setHours(9, 0, 0, 0);
       return tomorrow;
     },
   },
